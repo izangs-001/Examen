@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova plataforma web</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f2efe8;
+      --panel: #fffaf2;
+      --ink: #13232f;
+      --accent: #b9482f;
+      --accent-soft: #f0d3b2;
+      --border: #d8c7ad;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, #f8d9c7 0, transparent 28%),
+        linear-gradient(135deg, #efe7da 0%, #f8f3ea 100%);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(19, 35, 47, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1;
+    }
+
+    p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 28px;
+      align-items: center;
+    }
+
+    img,
+    audio {
+      width: 100%;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    code {
+      background: #f6eadb;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="badge">Infraestructura web amb Docker</span>
+      <h1>Nova plataforma del producte</h1>
+      <p>
+        Aquesta pàgina està servida per dos backends darrere d'un proxy invers Nginx
+        amb balanceig de càrrega. El proxy injecta les capçaleres
+        <code>X-Upstream-Server</code> i <code>X-Upstream-Status</code> per identificar
+        quin backend ha respost cada petició.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h2>Imatge del producte</h2>
+          <img src="producte.svg" alt="Il·lustració abstracta del nou producte">
+        </article>
+
+        <article class="card">
+          <h2>Element multimèdia</h2>
+          <p>Reproductor d'àudio incrustat dins del contingut estàtic compartit.</p>
+          <audio controls preload="metadata">
+            <source
+              src="data:audio/wav;base64,UklGRlQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YTAAAAAAAP//AAD//wAA//8AAP//AAD//wAA//8AAP//AAD//wAA"
+              type="audio/wav">
+            El teu navegador no suporta l'element d'àudio.
+          </audio>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
