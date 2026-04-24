@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640">
+  <rect width="1200" height="640" fill="#10151c"/>
+  <rect x="24" y="24" width="1152" height="592" rx="18" fill="#171f29" stroke="#2d3a49"/>
+  <text x="52" y="70" fill="#8bd5ca" font-family="monospace" font-size="28">Captura: xarxa aïllada i ports publicats</text>
+  <text x="52" y="118" fill="#f5f5f5" font-family="monospace" font-size="21">$ docker compose ps</text>
+  <text x="52" y="156" fill="#f5f5f5" font-family="monospace" font-size="20">web-backend-1   nginx:1.29-alpine   ...   80/tcp</text>
+  <text x="52" y="188" fill="#f5f5f5" font-family="monospace" font-size="20">web-backend-2   nginx:1.29-alpine   ...   80/tcp</text>
+  <text x="52" y="220" fill="#ffd166" font-family="monospace" font-size="20">web-proxy       nginx:1.29-alpine   ...   0.0.0.0:80-&gt;80/tcp</text>
+  <text x="52" y="276" fill="#f5f5f5" font-family="monospace" font-size="21">$ docker inspect web-backend-1 web-backend-2 --format '{{.Name}} ports={{json .HostConfig.PortBindings}}'</text>
+  <text x="52" y="314" fill="#ffd166" font-family="monospace" font-size="20">/web-backend-1 ports={}</text>
+  <text x="52" y="346" fill="#ffd166" font-family="monospace" font-size="20">/web-backend-2 ports={}</text>
+  <text x="52" y="402" fill="#f5f5f5" font-family="monospace" font-size="21">$ docker network inspect empresa_webnet</text>
+  <text x="52" y="440" fill="#f5f5f5" font-family="monospace" font-size="20">Containers: web-backend-1 (172.18.0.2), web-backend-2 (172.18.0.3), web-proxy (172.18.0.4)</text>
+  <text x="52" y="500" fill="#8bd5ca" font-family="monospace" font-size="20">Verificació:</text>
+  <text x="52" y="534" fill="#f5f5f5" font-family="monospace" font-size="20">Només el proxy exposa el port 80 cap a l'exterior.</text>
+  <text x="52" y="566" fill="#f5f5f5" font-family="monospace" font-size="20">Els backends romanen dins de la xarxa Docker personalitzada sense ports publicats.</text>
+</svg>

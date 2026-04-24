@@ -1,0 +1,63 @@
+services:
+  content-sync:
+    image: busybox:1.36
+    container_name: web-content-sync
+    command:
+      - sh
+      - -c
+      - >
+        find /target -mindepth 1 -delete &&
+        cp -r /seed/. /target/
+    volumes:
+      - web-content:/target
+      - ./content-src:/seed:ro
+    networks:
+      - webnet
+    restart: "no"
+
+  backend1:
+    image: nginx:1.29-alpine
+    container_name: web-backend-1
+    depends_on:
+      content-sync:
+        condition: service_completed_successfully
+    volumes:
+      - web-content:/usr/share/nginx/html
+    networks:
+      - webnet
+    restart: unless-stopped
+
+  backend2:
+    image: nginx:1.29-alpine
+    container_name: web-backend-2
+    depends_on:
+      content-sync:
+        condition: service_completed_successfully
+    volumes:
+      - web-content:/usr/share/nginx/html
+    networks:
+      - webnet
+    restart: unless-stopped
+
+  proxy:
+    image: nginx:1.29-alpine
+    container_name: web-proxy
+    depends_on:
+      - backend1
+      - backend2
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - webnet
+    restart: unless-stopped
+
+networks:
+  webnet:
+    driver: bridge
+    name: empresa_webnet
+
+volumes:
+  web-content:
+    name: empresa_web_content
